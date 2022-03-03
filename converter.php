@@ -24,12 +24,17 @@ $currencies = [
     ],
 
 ];
-// $mysqli = new mysqli("localhost","root","@123","");
 
-// $npr_rate = "SELECT rate from currencies WHERE currency_code=NPR";
-// $result =  $mysqli->query($npr_rate);
+$npr_rate = filterCurrencyByCurrencyCode($currencies, 'NPR');
+// print_r($npr_rate[0]);
+// var_dump($npr_rate);
 
-// var_dump($result->free_result());
+function filterCurrencyByCurrencyCode($arr, $code){
+    $currency_code = array_filter($arr, function($value) use($code){
+        return $value['currency_code'] == $code;
+    });
+    return array_column($currency_code, 'rate');
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +79,7 @@ $currencies = [
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" value="0.0083" id="second_input">
+                            <input type="text" class="form-control" value="<?php print_r($npr_rate[0]); ?>" id="second_input">
                         </div>
                     </div>
                     <div class="col-md-6">
