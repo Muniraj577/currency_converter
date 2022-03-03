@@ -135,21 +135,28 @@ $currencies = [
 
 
     $("#first_select").on('change', function(){
-        var $my_rate = $(this).val();
-        var $my_value = $("#first_input").val();
-        var $second_rate = $("#second_select").val();
-        if($my_rate == $second_rate){
-            $("#")
+        var convertedamount = '';
+        var $my_rate = $(this).val(),
+            $my_value = $("#first_input").val(),
+            $second_rate = $("#second_select").val();
+        if($my_value == ''){
+            $("#second_input").val('');
+        } else {
+            convertedamount = ConvertCurrency($my_rate, $second_rate, $my_value);
         }
-        convertedamount = ConvertCurrency($my_rate, $second_rate, $my_value);
+        
         $("#second_input").val(convertedamount);
     });
 
     $("#second_select").on('change', function(){
-        var $my_rate = $(this).val();
-        var $my_value = $("#second_input").val();
-        var $second_rate = $("#first_select").val();
-        convertedamount = ConvertCurrency($my_rate, $second_rate, $my_value);
+        var $my_rate = $(this).val(),
+            $my_value = $("#second_input").val(),
+            $second_rate = $("#first_select").val();
+        if($my_value == ''){
+            $("#first_input").val('');
+        } else {
+            convertedamount = ConvertCurrency($my_rate, $second_rate, $my_value);
+        }
         $("#first_input").val(convertedamount);
     });
 
