@@ -103,6 +103,11 @@ function filterCurrencyByCurrencyCode($arr, $code){
 <script src="js/jquery-3.5.1.min.js"></script>
 
 <script>
+    var first_selected_value = [],
+        second_selected_value = [];
+    $(document).ready(function(){
+        
+    });
     function ConvertCurrency($first_rate, $second_rate, $my_value){
         if($my_value != ''){
             var convert_amount_to_base = parseFloat($first_rate * $my_value);
